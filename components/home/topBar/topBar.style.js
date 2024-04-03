@@ -1,4 +1,6 @@
-import { StyleSheet } from "react-native";
+import { Dimensions, StyleSheet } from "react-native";
+
+const windowWidth = Dimensions.get('window').width;
 
 const styles = StyleSheet.create({
 
@@ -8,8 +10,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: 15,
     paddingTop: 30,
-
+    width: windowWidth,
     backgroundColor: '#fff',
+    
   },
 
   icons: {
