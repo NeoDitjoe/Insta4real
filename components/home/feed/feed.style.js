@@ -17,7 +17,8 @@ const styles = StyleSheet.create({
 
   stories: {
     borderBottomWidth: 1,
-    borderBottomColor: 'gray'
+    borderBottomColor: 'gray',
+    marginLeft: 5
   },
 
   postHeading: {
@@ -35,7 +36,7 @@ const styles = StyleSheet.create({
     borderColor: 'purple',
     alignItems: 'center',
     justifyContent: 'center',
-    padding: 3,
+    padding: 1.5,
     margin: 5,
     marginRight: 8
   },
@@ -43,23 +44,6 @@ const styles = StyleSheet.create({
   post: {
     width: windowWidth,
     height: 400
-  },
-
-  icons: {
-    width: 30,
-    height: 20
-  },
-
-  actionIcons: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    margin: 10,
-    marginBottom: -5
-  },
-
-  actionIcons1stchild: {
-    flexDirection: 'row',
-    gap: 20
   },
 
   likedby: {
@@ -74,6 +58,17 @@ const styles = StyleSheet.create({
 
   descritionLikes: {
     margin: 10
+  },
+
+  verified: {
+    flexDirection: 'row',
+    gap: 5,
+    alignItems: 'center'
+  },
+
+  verifiedIcon: { 
+    width: 18,
+    height: 18
   }
 });
 

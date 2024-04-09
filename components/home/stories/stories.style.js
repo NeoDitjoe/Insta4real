@@ -23,7 +23,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     padding: 3, 
     margin: 5,
-    marginRight: 8
   },
 
   img: {
@@ -36,7 +35,6 @@ const styles = StyleSheet.create({
     // flex:1,
     flexDirection: 'column',
     alignItems: 'center',
-  
   }
 });
 

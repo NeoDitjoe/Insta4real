@@ -1,9 +1,10 @@
-import { Image, ScrollView, Text, View } from "react-native";
+import { Image, ScrollView, Text, View, TouchableOpacity, Pressable } from "react-native";
 import TopBar from "../topBar/topBar";
 import styles from './feed.style'
 import Stories from "../stories/stories";
-import { Ionicons, SimpleLineIcons } from '@expo/vector-icons';
-import { Feather } from '@expo/vector-icons';
+import { SimpleLineIcons } from '@expo/vector-icons';
+import stories from "../../../util/dummyData/stories";
+import ActionIcons from "../action-icons/icons";
 
 export function ProfileImage(props) {
 
@@ -11,9 +12,9 @@ export function ProfileImage(props) {
   return (
     <View>
 
-      <View style={styles.border}>
+      <Pressable style={styles.border}>
         {children}
-      </View>
+      </Pressable>
 
     </View>
   )
@@ -26,16 +27,25 @@ export default function Feed() {
       <TopBar />
 
       <ScrollView horizontal style={styles.stories}>
-        <Stories
-          img={
-            <Image
-              style={styles.storiesImg}
-              source={{ uri: 'https://images.pexels.com/photos/20786737/pexels-photo-20786737/free-photo-of-portrait-of-a-girl.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' }}
-            />
-          }
 
-          name={'Candice '}
-        />
+        {
+          stories.map((item, index) => {
+            return (
+              <View key={index}>
+                <Stories
+                  img={
+                    <Image
+                      style={styles.storiesImg}
+                      source={{ uri: item?.stories.at(-1) }}
+                    />
+                  }
+
+                  name={item.name}
+                />
+              </View>
+            )
+          })
+        }
 
       </ScrollView>
 
@@ -44,9 +54,24 @@ export default function Feed() {
         <View style={styles.postHeading}>
           <View style={{ flexDirection: 'row', alignItems: 'center' }}>
             <ProfileImage>
-
+              <Image
+                /* profileImg */
+                style={styles.storiesImg}
+                source={require('../../../assets/profile.png')}
+              />
             </ProfileImage>
-            <Text style={{ fontWeight: 'bold' }}>Neo Ditjoe</Text>
+
+            
+            <View style={styles.verified}>
+              {/* name */}
+              <Text style={{ fontWeight: 'bold' }}>Neo Ditjoe</Text> 
+
+              {/* isVerified */}
+              <Image
+                style={styles.verifiedIcon}
+                source={require('../../../assets/verified.png')} 
+              />
+            </View>
           </View>
 
           <View style={{ paddingRight: 10 }}>
@@ -54,6 +79,7 @@ export default function Feed() {
           </View>
         </View>
 
+        {/* post */}
         <View>
           <Image
             style={styles.post}
@@ -62,41 +88,19 @@ export default function Feed() {
         </View>
 
         <View>
-
-          <View style={styles.actionIcons}>
-
-            <View style={styles.actionIcons1stchild}>
-              <View>
-                <Ionicons name="heart-outline" size={27} color="black" />
-              </View>
-
-              <View>
-                <Ionicons name="chatbubble-outline" size={24} color="black" />
-              </View>
-
-              <View>
-                <Feather name="send" size={24} color="black" />
-              </View>
-            </View>
-
-            <View>
-              <Image
-                style={styles.icons}
-                source={require('../../../assets/collectionIcon.png')}
-              />
-            </View>
-
-          </View>
+          <ActionIcons />
 
           <View style={styles.descritionLikes}>
 
+            {/* liked by */}
             <View style={styles.likedby}>
-              <Text style={[ styles.likedbyText ]}>Liked by</Text>
-              <Text style={[ styles.likedbyText, { fontWeight: 'bold'}]}>This_Person</Text>
-              <Text style={[ styles.likedbyText ]}>and</Text>
-              <Text style={[ styles.likedbyText, { fontWeight: 'bold'}]}>others</Text>
+              <Text style={[styles.likedbyText]}>Liked by</Text>
+              <Text style={[styles.likedbyText, { fontWeight: 'bold' }]}>This_Person</Text>
+              <Text style={[styles.likedbyText]}>and</Text>
+              <Text style={[styles.likedbyText, { fontWeight: 'bold' }]}>others</Text>
             </View>
 
+            {/* caption */}
             <View>
               <Text>
                 This is the description section, I can add a caption too
