@@ -5,6 +5,7 @@ import Stories from "../stories/stories";
 import { SimpleLineIcons } from '@expo/vector-icons';
 import stories from "../../../util/dummyData/stories";
 import ActionIcons from "../action-icons/icons";
+import posts from "../../../util/dummyData/posts";
 
 export function ProfileImage(props) {
 
@@ -49,70 +50,84 @@ export default function Feed() {
 
       </ScrollView>
 
-      <View>
+      {
+        posts?.map((post, index) => {
 
-        <View style={styles.postHeading}>
-          <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-            <ProfileImage>
-              <Image
-                /* profileImg */
-                style={styles.storiesImg}
-                source={require('../../../assets/profile.png')}
-              />
-            </ProfileImage>
+          return (
+            <View key={post.name + index}>
 
-            
-            <View style={styles.verified}>
-              {/* name */}
-              <Text style={{ fontWeight: 'bold' }}>Neo Ditjoe</Text> 
+              <View style={styles.postHeading}>
+                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                  <ProfileImage>
+                    <Image
+                      style={styles.storiesImg}
+                      source={{ uri: post?.profileImg }}
+                    />
+                  </ProfileImage>
 
-              {/* isVerified */}
-              <Image
-                style={styles.verifiedIcon}
-                source={require('../../../assets/verified.png')} 
-              />
+
+                  <View style={styles.verified}>
+                    <Text style={{ fontWeight: 'bold' }}>{post.name}</Text>
+
+                    {
+                      post.isVerified
+                      && <Image
+                        style={styles.verifiedIcon}
+                        source={require('../../../assets/verified.png')}
+                      />
+                    }
+                  </View>
+                </View>
+
+                <View style={{ paddingRight: 10 }}>
+                  <SimpleLineIcons name="options-vertical" size={20} color="black" />
+                </View>
+              </View>
+
+              {/* post */}
+              <View>
+                <Image
+                  style={styles.post}
+                  source={{ uri: post.post } || require('../../../assets/neoPost.png')}
+                />
+              </View>
+
+              <View>
+                <ActionIcons />
+
+                <View style={styles.descritionLikes}>
+
+                  {/* liked by */}
+                  {
+                    post.likeBy
+                    && <View style={styles.likedby}>
+                      <Text style={[styles.likedbyText]}>Liked by</Text>
+                      <Text style={[styles.likedbyText, { fontWeight: 'bold' }]}>{post.likeBy[0]}</Text>
+                      {
+                        post.likeBy.length > 1
+                        && <View style={styles.moreLike}>
+                          <Text style={[styles.likedbyText]}>and</Text>
+                          <Text style={[styles.likedbyText, { fontWeight: 'bold' }]}>others</Text>
+                        </View>
+                      }
+                    </View>
+                  }
+
+                  {/* caption */}
+                  <View>
+                    <Text>
+                      {post.caption}
+                    </Text>
+                  </View>
+
+                </View>
+
+              </View>
+
             </View>
-          </View>
-
-          <View style={{ paddingRight: 10 }}>
-            <SimpleLineIcons name="options-vertical" size={20} color="black" />
-          </View>
-        </View>
-
-        {/* post */}
-        <View>
-          <Image
-            style={styles.post}
-            source={require('../../../assets/neoPost.png')}
-          />
-        </View>
-
-        <View>
-          <ActionIcons />
-
-          <View style={styles.descritionLikes}>
-
-            {/* liked by */}
-            <View style={styles.likedby}>
-              <Text style={[styles.likedbyText]}>Liked by</Text>
-              <Text style={[styles.likedbyText, { fontWeight: 'bold' }]}>This_Person</Text>
-              <Text style={[styles.likedbyText]}>and</Text>
-              <Text style={[styles.likedbyText, { fontWeight: 'bold' }]}>others</Text>
-            </View>
-
-            {/* caption */}
-            <View>
-              <Text>
-                This is the description section, I can add a caption too
-              </Text>
-            </View>
-
-          </View>
-
-        </View>
-
-      </View>
-
+          )
+        })
+      }
 
     </ScrollView>
   )

@@ -69,6 +69,11 @@ const styles = StyleSheet.create({
   verifiedIcon: { 
     width: 18,
     height: 18
+  },
+
+  moreLike: {
+    flexDirection: 'row',
+    gap: 7
   }
 });
 
