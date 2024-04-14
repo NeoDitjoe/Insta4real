@@ -6,71 +6,89 @@ import Search from './components/search/search';
 import NewPost from './components/new-post/new-post';
 import Reels from './components/reels/reels';
 import Profile from './components/profile/profile';
+import AuthForm from './components/auth/auth-form';
+import { createStackNavigator } from '@react-navigation/stack';
 
 const Tab = createBottomTabNavigator()
+const Stack = createStackNavigator()
 
 export default function App() {
-  return (
-    <NavigationContainer>
-      <Tab.Navigator>
-        <Tab.Screen 
-          options={{ 
-            headerShown: false,
-            tabBarIcon: () => (
-              <Octicons name="home" size={24} color="black" />
-            )
-          }} 
-          name="Feed" 
-          component={Feed} 
-        />
 
-        <Tab.Screen 
-          options={{ 
-            headerShown: false,
-            tabBarIcon: () => (
-              <Octicons name="search" size={24} color="black" />
-            )
-          }} 
-          name="Search" 
-          component={Search} 
-        />
+  const authorized = false
 
-        <Tab.Screen 
-          options={{ 
-            headerShown: false,
-            tabBarIcon: () => (
-              <Octicons name="diff-added" size={24} color="black" />
-            )
-          }} 
-          name="New Post" 
-          component={NewPost} 
-        />
+  if (!authorized) {
 
-        <Tab.Screen 
-          options={{ 
-            headerShown: false,
-            tabBarIcon: () => (
-              <Octicons name="video" size={24} color="black" />
-            )
-          }} 
-          name="Reels" 
-          component={Reels} 
-        />
+    return (
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen name='auth' component={AuthForm} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    )
+  } else {
 
-        <Tab.Screen 
-          options={{ 
-            headerShown: false,
-            tabBarIcon: () => (
-              <Octicons name="person" size={24} color="black" />
-            )
-          }} 
-          name="Profile" 
-          component={Profile} 
-        />
+    return (
+      <NavigationContainer>
+        <Tab.Navigator>
+          <Tab.Screen
+            options={{
+              headerShown: false,
+              tabBarIcon: () => (
+                <Octicons name="home" size={24} color="black" />
+              )
+            }}
+            name="Feed"
+            component={Feed}
+          />
 
-      </Tab.Navigator>
+          <Tab.Screen
+            options={{
+              headerShown: false,
+              tabBarIcon: () => (
+                <Octicons name="search" size={24} color="black" />
+              )
+            }}
+            name="Search"
+            component={Search}
+          />
 
-    </NavigationContainer>
-  );
+          <Tab.Screen
+            options={{
+              headerShown: false,
+              tabBarIcon: () => (
+                <Octicons name="diff-added" size={24} color="black" />
+              )
+            }}
+            name="New Post"
+            component={NewPost}
+          />
+
+          <Tab.Screen
+            options={{
+              headerShown: false,
+              tabBarIcon: () => (
+                <Octicons name="video" size={24} color="black" />
+              )
+            }}
+            name="Reels"
+            component={Reels}
+          />
+
+          <Tab.Screen
+            options={{
+              headerShown: false,
+              tabBarIcon: () => (
+                <Octicons name="person" size={24} color="black" />
+              )
+            }}
+            name="Profile"
+            component={Profile}
+          />
+
+        </Tab.Navigator>
+
+      </NavigationContainer>
+    );
+  }
 
 }
