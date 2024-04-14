@@ -44,6 +44,7 @@ const styles = StyleSheet.create({
   post: {
     width: windowWidth,
     height: 400
+    // aspectRatio: 6/8
   },
 
   likedby: {
