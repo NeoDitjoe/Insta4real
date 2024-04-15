@@ -6,8 +6,9 @@ import Search from './components/search/search';
 import NewPost from './components/new-post/new-post';
 import Reels from './components/reels/reels';
 import Profile from './components/profile/profile';
-import AuthForm from './components/auth/auth-form';
 import { createStackNavigator } from '@react-navigation/stack';
+import SignInForm from './components/auth/sign-in-form';
+import SignUpForm from './components/auth/sign-up-form';
 
 const Tab = createBottomTabNavigator()
 const Stack = createStackNavigator()
@@ -21,7 +22,8 @@ export default function App() {
     return (
       <NavigationContainer>
         <Stack.Navigator>
-          <Stack.Screen name='auth' component={AuthForm} />
+          <Stack.Screen name='sign-in' component={SignInForm} options={{ headerShown: false }} />
+          <Stack.Screen name='sign-up' component={SignUpForm} />
         </Stack.Navigator>
       </NavigationContainer>
     )
