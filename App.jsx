@@ -22,6 +22,11 @@ export default function App() {
   const [ user, setUser ] = useState(null)
 
   useEffect(() => {
+
+    /**
+     * {@link restoreUser} Get the user details from the token then set it a state
+     * while {@link storeUser} stores the user details in an Async storage
+     */
     const restoreUser = async () => {
       try {
         const userString = await AsyncStorage.getItem('user');
@@ -42,6 +47,11 @@ export default function App() {
     });
   }, []);
   
+  /**
+   * 
+   * @param {Object} user 
+   * stores the user details in an Async storage
+   */
   const storeUser = async (user) => {
     try {
       const userString = JSON.stringify(user);

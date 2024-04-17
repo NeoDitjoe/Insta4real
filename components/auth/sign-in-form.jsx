@@ -19,7 +19,7 @@ export default function SignInForm() {
 
     try {
       const response = await signInWithEmailAndPassword(auth, email, password)
-      alert(response)
+      console.log(response)
     } catch (error) {
       alert('Incorrect details!')
       console.log(error)
