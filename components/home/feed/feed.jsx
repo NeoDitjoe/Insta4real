@@ -99,12 +99,12 @@ export default function Feed() {
 
                   {/* liked by */}
                   {
-                    post.likeBy
+                    post.likedBy
                     && <View style={styles.likedby}>
                       <Text style={[styles.likedbyText]}>Liked by</Text>
-                      <Text style={[styles.likedbyText, { fontWeight: 'bold' }]}>{post.likeBy[0]}</Text>
+                      <Text style={[styles.likedbyText, { fontWeight: 'bold' }]}>{post.likedBy[0]}</Text>
                       {
-                        post.likeBy.length > 1
+                        post.likedBy.length > 1
                         && <View style={styles.moreLike}>
                           <Text style={[styles.likedbyText]}>and</Text>
                           <Text style={[styles.likedbyText, { fontWeight: 'bold' }]}>others</Text>

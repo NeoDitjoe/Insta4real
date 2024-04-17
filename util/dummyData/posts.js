@@ -6,7 +6,7 @@ const posts =[
     post: '../../assets/neoPost.png',
     caption: 'This is my caption',
     isVerified: true,
-    likeBy: ['Someone']
+    likedBy: ['Someone']
   },
 
   {
@@ -23,7 +23,7 @@ const posts =[
     post: 'https://images.pexels.com/photos/18471860/pexels-photo-18471860/free-photo-of-young-men-in-sportswear.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
     caption: 'Just Chilling!',
     isVerified: false,
-    likeBy: ['freddo', 'Some1Else']
+    likedBy: ['freddo', 'Some1Else']
   },
 ]
 
