@@ -9,15 +9,49 @@ import Profile from './components/profile/profile';
 import { createStackNavigator } from '@react-navigation/stack';
 import SignInForm from './components/auth/sign-in-form';
 import SignUpForm from './components/auth/sign-up-form';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useEffect, useState } from 'react';
+import { onAuthStateChanged } from 'firebase/auth';
+import { firebaseAuth } from './util/database/firebase-config';
 
 const Tab = createBottomTabNavigator()
 const Stack = createStackNavigator()
 
 export default function App() {
 
-  const authorized = false
+  const [ user, setUser ] = useState(null)
 
-  if (!authorized) {
+  useEffect(() => {
+    const restoreUser = async () => {
+      try {
+        const userString = await AsyncStorage.getItem('user');
+        const user = JSON.parse(userString);
+        setUser(user);
+      } catch (error) {
+        console.log('Error retrieving user from storage:', error);
+      }
+    };
+  
+    restoreUser();
+  
+    onAuthStateChanged(firebaseAuth, (user) => {
+      setUser(user);
+      if (user) {
+        storeUser(user); 
+      }
+    });
+  }, []);
+  
+  const storeUser = async (user) => {
+    try {
+      const userString = JSON.stringify(user);
+      await AsyncStorage.setItem('user', userString);
+    } catch (error) {
+      console.log('Error storing user in storage:', error);
+    }
+  };
+
+  if (!user) {
 
     return (
       <NavigationContainer>
