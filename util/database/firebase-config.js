@@ -2,13 +2,13 @@ import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDtHOSBWsZNdU2m7xNO33AKoBVQ2sUS3SE",
-  authDomain: "insta4real-1ef4e.firebaseapp.com",
-  projectId: "insta4real-1ef4e",
-  storageBucket: "insta4real-1ef4e.appspot.com",
-  messagingSenderId: "948832037004",
-  appId: "1:948832037004:web:5f99842a730acfcaa833a9",
-  measurementId: "G-JM0P1M0P0Y"
+  apiKey: process.env.APIKEY,
+  authDomain: process.env.AUTHDOMAIN,
+  projectId: process.env.PROJECTID,
+  storageBucket: process.env.STORAGEBUCKET,
+  messagingSenderId: process.env.MESSAGINGSSENDERID,
+  appId: process.env.APPID,
+  measurementId: process.env.MEASUREMENTID
 };
 
 const app = initializeApp(firebaseConfig);
